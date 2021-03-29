@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Todo list</title>
+
+</head>
+<body>
+    <h1>Todo list</h1>
+    
+    <select>
+        <option value="emergency">긴급</option>
+        <option value="normal">보통</option>
+        <option value="sometimes">언젠가</option>
+    </select>
+    <input type = "text" placeholder="할 일을 추가하시오" id="ipTodo">
+        
+    <button type= "button" id="btn">추가</button>
+    <!-- input에 글씨쓰고 버튼 누르면 리스트에 추가 -->
+    <script>
+        document.getElementById("ipTodo")
+        document.getElementById("btn").addEventListener("click",BClick);
+        //document.getElementById("btn") : id가 btn인 html요소에 접근한다.
+        //  addEventListener(이벤트명,이벤트가 발생하면 실행할 함수)
+        function BClick (){
+            var creTodo = document.createElement("li");
+            // var 매개변수 = createElement() 는 요소를 추가한다. ()안에는 생성할 요소의 유형
+            creTodo.innerHTML = ipTodo.value;
+            //아이디가ipTodo인 것의 value를 li속성으로 만들어진 요소(creTodo)로 바꾼다. ??? 
+            // creTodo.insertAdjacentHTML("beforeend",ipTodo.value);
+            List.appendChild(creTodo);
+            // creTodo를 List(Parent)의 자식요소로 끝에 추가한다.
+        
+        };
+    </script>
+    <h3>긴급</h3>
+    <ul id="List" > 
+    </ul>
+    <h3>보통</h3>
+    <h3>언젠가</h3>
+</body>
+</html>

@@ -9,6 +9,7 @@
     <h1>Todo list</h1>
     <!-- select박스 선택시 다르게 append한다 -->
     <!-- onchange에는 select변경 이벤트 발생했을 때 호출될 함수명 -->
+    <!-- 우선순위가 바뀔 때마다 변화가 일어나는게 아니라면, select 태그의 value 값을 가져오면 option value를 실행한다 -->
     <select id = "priority" onchange="changePri()">
         <option value="emergency">긴급</option>
         <option value="normal">보통</option>

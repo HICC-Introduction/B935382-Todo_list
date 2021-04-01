@@ -18,10 +18,6 @@
             // var 매개변수 = createElement() 는 요소를 추가한다. ()안에는 생성할 요소의 유형
             creTodo.innerHTML = ipTodo.value;
             //아이디가ipTodo인 것의 value를 li속성으로 만들어진 요소(creTodo)로 바꾼다. ??? 
-            // function removeTodo (){
-            //     var removeButton = document.createElement("button");
-            //     removeButton.innerHTML = "click me";
-            //     // 버튼 안에 x라는 글자를 넣는다
             var num = 0;
             creTodo.setAttribute("id","li"+num);
             // 버튼을 눌러 만들어진 li를 구분하기 위해 id를 추가한다.
@@ -29,7 +25,6 @@
             creTodo.innerHTML += "<button type='button'onclick='removeButton("+num+")'>x</button>";
             // ButtonClick함수 실행 시 버튼이 함께 추가된다. x += y	x = x + y
             num++;
-            
             // 피연산자++ : 피연산자에 1을 더하며, 1을 더하기 전 값을 반환한다.       
             document.getElementById("priority");
             
@@ -37,38 +32,37 @@
                 
                     List1.appendChild(creTodo);
                      // creTodo를 List(Parent)의 자식요소로 끝에 추가한다.
-                   
-                // removeButton을 list의 자식요소로 추가한다
-                   
-                } //여기에;넣으면 오류 : if -else if 사이에 ;
                 
-                
+                    } //여기에;넣으면 오류 : if -else if 사이에 ; 넣지 않는다
                 else if(priority.value == "normal") {
                     
-                    List2.appendChild(creTodo);
-                    
+                    List2.appendChild(creTodo); 
+                
                 }
                 else if(priority.value == "somedays"){
+                    
                     List3.appendChild(creTodo);
                     
                 }     
-        }
-        function removeButton(num){
-           var removeLi = document.getElementById("li"+num);
-        //    if(priority.value == "emergency"){ 
-           List1.removeChild(removeLi);
-        //    }
-        //    else if(priority.value == "normal") {
-            List2.removeChild(removeLi);
-        //    }
-        //    else if(priority.value == "somedays"){
-            List3.removeChild(removeLi);
-        //    }
-        }
-            
-        //현재 : if에 따라 append되는 위치 다르다
-        //바꾸자 : 생성은 똑같이, 위치가 이동되는 걸로...
+        };
         
+        function removeButton(num){
+           
+            var removeLi = document.getElementById("li"+num);
+      
+            var listId = removeLi.parentElement;
+           // removeLi가 현재 위치한 Id값을 읽고 그것에 따라 if문으로 다르게 지운다. 
+                if(listId == List1){ 
+                    List1.removeChild(removeLi);
+                }
+                else if(listId == List2) {
+                    List2.removeChild(removeLi);
+                }
+                else if(listId == List3){
+                    List3.removeChild(removeLi);
+                }
+        };
+            
         // function makePri(){
             
         // };

@@ -18,28 +18,28 @@
             var creTodo = document.createElement("li");
             // var 매개변수 = createElement() 는 요소를 추가한다. ()안에는 생성할 요소의 유형
             creTodo.innerHTML = ipTodo.value;
-            //아이디가ipTodo인 것의 value를 li속성으로 만들어진 요소(creTodo)로 바꾼다. ??? 
+            //아이디가ipTodo인 것의 value를 li속성으로 만들어진 요소(creTodo)로 HTML형태로 바꾼다. 
             
             creTodo.setAttribute("id","li"+num);
-            // // 버튼을 눌러 만들어진 li를 구분하기 위해 id를 추가한다.
-            // // id속성값을 li+num으로 변경한다
-            // creTodo.innerHTML += "<button type='button' onclick='removeButton("+num+")'>x</button>";
+            // 버튼을 눌러 만들어진 li를 구분하기 위해 id를 추가한다.
+            // id속성값을 li+num으로 변경한다
+            
             creTodo.innerHTML += "<button type = 'button' onclick='removeButton("+num+")'>x</button>";
-
-            // // ButtonClick함수 실행 시 버튼이 함께 추가된다. x += y	x = x + y
-            // creTodo.innerHTML += "<button type = 'button' id = 'checkBtnId' value = 'unchecked' onclick = 'check("+num+")'>체크</button>";
+            // ButtonClick함수 실행 시 버튼이 함께 추가된다. x += y	x = x + y
+            
+            creTodo.innerHTML += "<button type = 'button' id = 'checkBtnId' value = 'unchecked' onclick = 'check("+num+")'>체크</button>";
            
-            // creTodo.innerHTML += "<select id = 'priority2' onchange = 'changePri()'><option value='emergency'>긴급</option><option value='normal'>보통</option><option value='somedays'>언젠가</option></select>";
+            creTodo.innerHTML += "<select id = 'priority2' onchange = 'changePri("+num+")'><option value = 'change'>-우선순위 변경-</option><option value='emergency'>긴급</option><option value='normal'>보통</option><option value='somedays'>언젠가</option></select>";
 
             num++;
             // 피연산자++ : 피연산자에 1을 더하며, 1을 더하기 전 값을 반환한다.       
             
+                 // creTodo를 List(Parent)의 자식요소로 끝에 추가한다.
                 if(priority.value == "emergency"){
                 
                     List1.appendChild(creTodo);
-                     // creTodo를 List(Parent)의 자식요소로 끝에 추가한다.
-                
-                    } //여기에;넣으면 오류 : if -else if 사이에 ; 넣지 않는다
+                    
+                }
                 else if(priority.value == "normal") {
                     
                     List2.appendChild(creTodo); 
@@ -52,73 +52,40 @@
                 }     
         };
    
-    
 
-        // 체크 버튼을 누르면 취소선이 그어진다(1)
-        // function check(num){
-        //     //  var checkLi = document.getElementById("li"+num);
-        //      var li = document.querySelector("li");
-        //           li.classList.toggle('checked');
-        // };
-            
-        // 체크 버튼을 누르면 취소선이 그어진다(2)
-            // function check(num){
-            //     var checkLi = document.getElementById("li"+num);
-            //         if (document.querySelector("#checkBtnId").value === "unchecked"){
-            //             checkLi.style.textDecoration = "line-through";
-            //             document.querySelector("#checkBtnId").value = "checked";
-            //         }
-            //         else if (document.querySelector("#checkBtnId").value === "checked"){
-            //             checkLi.style.textDecoration = "none";
-            //             document.querySelector("#checkBtnId").value = "unchecked";
-            //         }
-            // };
+        // 기능1) 체크 버튼을 누르면 취소선
+        function check(num){
+            var checkLi = document.getElementById("li"+num);
+            checkLi.classList.toggle('checked');
+        };
              
-        // };
-        // function checkEvent(){
-        //     var findLi = document.querySelector("Li");
-        //     // findLi.console.log(event);
-        //     findLi.addEventListener("click",checking)
-        // }
-        // function checking(){
-        //     findLi.classList.toggle('checked');
-        // }
-
-        // X버튼을 누르면 삭제되는 함수
+        // 기능2) X버튼을 누르면 삭제되는 함수
         function removeButton(num){
-           
             var checkLi = document.getElementById("li"+num);
             checkLi.remove(ipTodo.value);
          };
-            
-        // function makePri(){
-        // <select id = "priority2" onchange ="changePri()">
-        // <option value="emergency">긴급</option>
-        // <option value="normal">보통</option>
-        // <option value="somedays">언젠가</option>
-        // </select>;
-        // };
 
-        // function changePri(){
-        //     //만들어진 li의 value를 갖고온다.
-        //     var creTodo = document.createElement("li");
-        //     creTodo.innerHTML = ipTodo.value;
-        //     if(priority2.value == "emergency"){
-                
-        //         List1.appendChild(creTodo);
-        //          // creTodo를 List(Parent)의 자식요소로 끝에 추가한다.
+        // 기능3) select 선택 시 우선순위 변경
+        function changePri(num){
+            var checkLi = document.getElementById("li"+num);
             
-        //         }
-        //     else if(priority2.value == "normal") {
+            if(priority2.value == "emergency"){
                 
-        //         List2.appendChild(creTodo); 
+                List1.append(checkLi);
+                
             
-        //     }
-        //     else if(priority2.value == "somedays"){
+            }
+            else if(priority2.value == "normal") {
                 
-        //         List3.appendChild(creTodo);
-        //     }
-        // };
+                List2.append(checkLi); 
+                
+            }
+            else if(priority2.value == "somedays"){
+                
+                List3.append(checkLi);
+                
+            }
+        };
         
         
 </script>
@@ -136,13 +103,13 @@
     <button type= "button" id="btn" onclick="ButtonClick()">추가</button>
     
     <h3>긴급</h3>
-    <ul id="List1" class = "ulClass"> 
+    <ul id="List1"> 
     </ul>
     <h3>보통</h3>
-    <ul id="List2" class = "ulClass" > 
+    <ul id="List2"> 
     </ul>
     <h3>언젠가</h3>
-    <ul id="List3" class = "ulClass"> 
+    <ul id="List3"> 
     </ul>
 </body>
 </html>

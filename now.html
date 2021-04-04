@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8">
     <title>Todo list</title>
@@ -7,13 +5,20 @@
         .checked {
             text-decoration: line-through;
         } 
+        .headD {
+            text-align: center;
+        }
+        .inputD {
+            text-align: center;
+        }
+       
+
     </style>
 </head>
 <body>
     <script>
         // <!-- input에 글씨쓰고 버튼 누르면 리스트에 추가 -->
         var num = 0;
-
         function ButtonClick (){
             var creTodo = document.createElement("li");
             // var 매개변수 = createElement() 는 요소를 추가한다. ()안에는 생성할 요소의 유형
@@ -29,8 +34,7 @@
             
             creTodo.innerHTML += "<button type = 'button' id = 'checkBtnId' value = 'unchecked' onclick = 'check("+num+")'>체크</button>";
            
-            creTodo.innerHTML += "<select id = 'priority2' onchange = 'changePri("+num+")'><option value = 'change'>-우선순위 변경-</option><option value='emergency'>긴급</option><option value='normal'>보통</option><option value='somedays'>언젠가</option></select>";
-
+            creTodo.innerHTML += "<select class= 'priority2' onchange = 'changePri("+num+")'><option>-우선순위 변경-</option><option value='emergency2'>긴급</option><option value='normal2'>보통</option><option value='somedays2'>언젠가</option></select>";
             num++;
             // 피연산자++ : 피연산자에 1을 더하며, 1을 더하기 전 값을 반환한다.       
             
@@ -52,7 +56,6 @@
                 }     
         };
    
-
         // 기능1) 체크 버튼을 누르면 취소선
         function check(num){
             var checkLi = document.getElementById("li"+num);
@@ -64,52 +67,59 @@
             var checkLi = document.getElementById("li"+num);
             checkLi.remove(ipTodo.value);
         };
-
-        // 기능3) select 선택 시 우선순위 변경
+        // 기능3) select 선택 시 우선순위 변경 
+        // 문제 : ButtonClick함수가 1회 작동해야 changpri1회 작동 하는듯(todo 1개 만들고 옮기고 1개 만들고 옮기고 해야 함)
         function changePri(num){
             var checkLi = document.getElementById("li"+num);
+           
+            var classPri = document.getElementsByClassName("priority2")[num].value;
             
-            if(priority2.value == "emergency"){
-                
+            if(classPri == "emergency2"){
+
                 List1.appendChild(checkLi);
-            
+
             }
-            else if(priority2.value == "normal") {
-                
+            else if(classPri == "normal2") {
+
                 List2.appendChild(checkLi); 
-                
+
             }
-            else if(priority2.value == "somedays"){
-                
+            else if(classPri == "somedays2"){
+
                 List3.appendChild(checkLi);
-                
+
             }
+        
         };
 
-        
-</script>
 
-    <h1>Todo list</h1>
-    <!-- select박스 선택시 다르게 append한다 -->
-    <select id = "priority">
-        <option value="emergency">긴급</option>
-        <option value="normal">보통</option>
-        <option value="somedays">언젠가</option>
-    </select>
-    
-    <!-- 할 일을 추가한다 -->
-    <input type = "text" placeholder="할 일을 추가하시오" id="ipTodo">
+    </script>
+
+        <h1 class = "headD">Todo list</h1>
+        <!-- select박스 선택시 다르게 append한다 -->
+        <div class = inputD>
+            <select id = "priority" class = selectD>
+                <option value="emergency">긴급</option>
+                <option value="normal">보통</option>
+                <option value="somedays">언젠가</option>
+            </select>
+            
+            <!-- 할 일을 추가한다 -->
+            <input type = "text" placeholder="할 일을 추가하시오" id="ipTodo">
         
-    <button type= "button" id="btn" onclick="ButtonClick()">추가</button>
-    
-    <h3>긴급</h3>
-    <ul id="List1"> 
-    </ul>
-    <h3>보통</h3>
-    <ul id="List2"> 
-    </ul>
-    <h3>언젠가</h3>
-    <ul id="List3"> 
-    </ul>
-</body>
-</html>
+            <button  type= "button" id="btn" onclick="ButtonClick()">추가</button>
+
+        </div>
+
+        <h3>긴급</h3>
+            <ul id="List1"> 
+            </ul>
+        <h3>보통</h3>
+            <ul id="List2">  
+            </ul>
+        <h3>언젠가</h3>
+            <ul id="List3"> 
+            </ul>
+   
+    </body>
+    </html>

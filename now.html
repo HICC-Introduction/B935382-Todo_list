@@ -63,7 +63,7 @@
         function removeButton(num){
             var checkLi = document.getElementById("li"+num);
             checkLi.remove(ipTodo.value);
-         };
+        };
 
         // 기능3) select 선택 시 우선순위 변경
         function changePri(num){
@@ -71,24 +71,24 @@
             
             if(priority2.value == "emergency"){
                 
-                List1.append(checkLi);
-                
+                List1.appendChild(checkLi);
             
             }
             else if(priority2.value == "normal") {
                 
-                List2.append(checkLi); 
+                List2.appendChild(checkLi); 
                 
             }
             else if(priority2.value == "somedays"){
                 
-                List3.append(checkLi);
+                List3.appendChild(checkLi);
                 
             }
         };
-        
+
         
 </script>
+
     <h1>Todo list</h1>
     <!-- select박스 선택시 다르게 append한다 -->
     <select id = "priority">
